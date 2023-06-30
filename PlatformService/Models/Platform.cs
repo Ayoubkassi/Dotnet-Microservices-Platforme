@@ -15,7 +15,7 @@ namespace PlatformService.Models
         public string Publisher { get; set; }
 
         [Required]
-        public string code { get; set; }
+        public string Cost { get; set; }
 
     }
 }
