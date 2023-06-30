@@ -2,7 +2,7 @@ using PlatformService.Models;
 
 namespace PlatformService.Data
 {
-    public class PlatformRepo : IPlatformeRepo
+    public class PlatformRepo : IPlatformRepo
     {
         private readonly AppDbContext _context;
 
@@ -30,7 +30,7 @@ namespace PlatformService.Data
             return _context.Platforms.FirstOrDefault(p => p.Id == id);
         }
 
-        public bool saveChanges()
+        public bool SaveChanges()
         {
             return (_context.SaveChanges() >= 0);
         }

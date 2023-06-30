@@ -5,7 +5,7 @@ namespace PlatformService.Data
 {
     public class AppDbContext : DbContext
     {
-        protected AppDbContext(DbContextOptions<AppDbContext> opt) : base(opt)
+        public AppDbContext(DbContextOptions<AppDbContext> opt) : base(opt)
         {
 
         }
