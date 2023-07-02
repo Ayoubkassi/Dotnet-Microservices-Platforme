@@ -58,3 +58,9 @@ it will hand back it's thread to thread pool , where it can be reused
 -Typically used between services
 -Event bus is often used (we'll be using RabbitMQ)
 -Services don't need to know about each other, just the bus
+-introduces its own
+
+
+
+restart a deployment after pushing a new docker image :
+>kubectl rollout restart deployment platforms-depl
