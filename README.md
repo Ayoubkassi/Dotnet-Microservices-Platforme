@@ -36,7 +36,6 @@ first : create yaml file for ur deployment and after run the command :
 Usually services needs to know about each other so me as a service i must know that i must go to that exact service and call it , but Usually is in brackets
 because there are thing like **Service discovery** and **Service meshes** , that can do this automatic
 
-
 and yes http is always synchronous , so even when we have the signature of a function with the **async** word but , from a messaging prespective this method will still synchronous , The client still has to wait for a response
 
 async just how the service manage their threads internally , but from client it's always synchronous , client has always to wait for response
@@ -49,7 +48,6 @@ it will hand back it's thread to thread pool , where it can be reused
 
 -it does tend to pair services , (couple them) and create a dependency
 
-
 ### Asynchronous messaging
 
 -NO request / response cycle
@@ -60,7 +58,13 @@ it will hand back it's thread to thread pool , where it can be reused
 -Services don't need to know about each other, just the bus
 -introduces its own
 
-
-
 restart a deployment after pushing a new docker image :
->kubectl rollout restart deployment platforms-depl
+
+> kubectl rollout restart deployment platforms-depl
+
+To run miration :
+
+```bash
+export PATH="$PATH:$HOME/.dotnet/tools/"
+dotnet ef migrations add initialmigration
+```
