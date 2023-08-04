@@ -68,3 +68,5 @@ To run miration :
 export PATH="$PATH:$HOME/.dotnet/tools/"
 dotnet ef migrations add initialmigration
 ```
+
+time : 6:09
