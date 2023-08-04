@@ -5,22 +5,32 @@ using PlatformService.SyncDataServices.Http;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddDbContext<AppDbContext>(opt =>
-    opt.UseInMemoryDatabase("InMem")
+
+if (builder.Environment.IsDevelopment())
+{
+    Console.WriteLine("--> Using InMem DB...");
+    builder.Services.AddDbContext<AppDbContext>(opt =>
+        opt.UseInMemoryDatabase("InMem")
     );
+}
+else
+{
+    Console.WriteLine("--> Using in MySQL DB...");
+    builder.Services.AddDbContext<AppDbContext>(options =>
+    {
+        options.UseMySQL(builder.Configuration.GetConnectionString("PlatformsConn"));
+    });
+}
+
 builder.Services.AddScoped<IPlatformRepo, PlatformRepo>();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddHttpClient<ICommandDataClient, HttpCommandDataClient>().ConfigurePrimaryHttpMessageHandler(_ => new HttpClientHandler
 {
     ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; }
-
-}); ;
-
+});
 
 var app = builder.Build();
 
@@ -29,18 +39,13 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
-
 }
 
 Console.WriteLine($"--> CommandService Endpoint {builder.Configuration["CommandService"]}");
 
-// app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
 
-PrepDb.PrepPopulation(app);
+PrepDb.PrepPopulation(app, builder.Environment.IsProduction());
 
 app.Run();
-

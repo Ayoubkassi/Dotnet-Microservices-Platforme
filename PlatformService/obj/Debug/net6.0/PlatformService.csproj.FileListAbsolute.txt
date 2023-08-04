@@ -72,3 +72,4 @@
 /home/kassi/Desktop/Dotnet-Microservices-Platforme/PlatformService/obj/Debug/net6.0/ref/PlatformService.dll
 /home/kassi/Desktop/Dotnet-Microservices-Platforme/PlatformService/obj/Debug/net6.0/PlatformService.pdb
 /home/kassi/Desktop/Dotnet-Microservices-Platforme/PlatformService/obj/Debug/net6.0/PlatformService.genruntimeconfig.cache
+/home/kassi/Desktop/Dotnet-Microservices-Platforme/PlatformService/bin/Debug/net6.0/appsettings.Production.json
